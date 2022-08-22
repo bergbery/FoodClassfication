@@ -42,7 +42,7 @@ def prediction(filename):
       #Add
     model.run_eagerly=True  
     probabilities = model.predict(np.array( [my_image_re,] ))[0,:]
-    print("This is the prediction:" + probabilities)
+    print(probabilities)
     #Step 4
     number_to_class = ['Apple', 'Orange']
     index = np.argsort(probabilities)
