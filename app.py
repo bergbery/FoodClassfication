@@ -16,7 +16,7 @@ print("Loading model")
 #sess = tf.compat.v1.Session()
 #set_session(sess)
 global model 
-model = load_model('AppleOrangeRGBWorking.h5') 
+model = load_model('CharKwayTeowNasiLemakRGBWorking.h5') 
 #global graph
 #graph = tf.compat.v1.get_default_graph()
 
@@ -44,7 +44,7 @@ def prediction(filename):
     probabilities = model.predict(np.array( [my_image_re,] ))[0,:]
     print(probabilities)
     #Step 4
-    number_to_class = ['Apple', 'Orange']
+    number_to_class = ['CharKwayTeow', 'NasiLemak']
     index = np.argsort(probabilities)
     predictions = {
       "class1":number_to_class[index[1]],
