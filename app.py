@@ -9,7 +9,8 @@ from keras.backend import set_session
 from skimage.transform import resize 
 import matplotlib.pyplot as plt 
 import tensorflow as tf 
-import numpy as np 
+import numpy as np
+import base64
 
 print("Loading model") 
 #global sess
@@ -35,6 +36,9 @@ def prediction(filename):
     my_image = plt.imread(os.path.join('uploads', filename))
     #Step 2
     my_image_re = resize(my_image, (32,32,3))
+    #step 2a
+    with open(my_image, "wb") as fh:
+    var vimage64 = fh.write(base64.urlsafe_b64decode('data'))
     
     #Step 3
     #with graph.as_default():
@@ -51,6 +55,7 @@ def prediction(filename):
       "class2":number_to_class[index[0]],
       "prob1":probabilities[index[1]],
       "prob2":probabilities[index[0]],
+      "image64": vimage64,
      }
     #Step 5
     return render_template('predict.html', predictions=predictions)
