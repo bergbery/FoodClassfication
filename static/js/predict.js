@@ -10,9 +10,11 @@ $(document).ready(function () {
 	setTimeout(function(){	
 		//var vpredictresult = '{{ predictions.class1 }}';
 		var vpredictresult = mpredictedresult;
-		alert(vpredictresult);
+		//alert(vpredictresult);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
+		//## turn on collapse
+		$('.' + vpredictresult).removeClass('hidectrl');
 	}, 200);
 });
 
