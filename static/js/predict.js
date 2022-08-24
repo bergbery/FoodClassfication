@@ -2,7 +2,7 @@ $(document).ready(function () {
 	
 	var vpredictions = {
 		"class1": '',
-		"class2": ',
+		"class2": '',
 		"prob1":0,
 		"prob2":0,
 	}
