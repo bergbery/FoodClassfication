@@ -6,10 +6,12 @@ $(document).ready(function () {
 	//	"prob1":0.9,
 	//	"prob2":0.1,
 	//}
+	var vpredictions = mpredictions;
 
 	setTimeout(function(){	
-		//var vpredictresult = '{{ predictions.class1 }}';
-		var vpredictresult = mpredictedresult;
+		var vpredictresult = vpredictions.class1;
+		var vuploadedimg = vpredictions.uploadedimg;
+		$('#uploadedimg').attr('src, vuploadedimg);
 		//alert(vpredictresult);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
