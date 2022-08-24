@@ -10,8 +10,8 @@ $(document).ready(function () {
 
 	setTimeout(function(){	
 		var vpredictresult = vpredictions.class1;
-		var vuploadedimg = vpredictions.image64;
-		$('#uploadedimg').attr('src, vuploadedimg);
+		//var vuploadedimg = vpredictions.image64;
+		//$('#uploadedimg').attr('src, vuploadedimg);
 		//alert(vpredictresult);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
