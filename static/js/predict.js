@@ -1,12 +1,14 @@
 $(document).ready(function () { 
 	
-	//var predictions = {
-	//	"class1": 'NasiLemak',
-	//	"class2": 'CharKwayTeow',
-	//	"prob1":0.9,
-	//	"prob2":0.1,
-	//}
-	var vpredictions = mpredictions;
+	var vpredictions = {
+		"class1": '',
+		"class2": ',
+		"prob1":0.9,
+		"prob2":0.1,
+	}
+	if (mpredictions != '') {
+		vpredictions = JSON.Parse(mpredictions);
+	}
 
 	setTimeout(function(){	
 		var vpredictresult = vpredictions.class1;
