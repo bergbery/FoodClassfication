@@ -7,7 +7,8 @@ $(document).ready(function () {
 		"prob2":0,
 	}
 	if (mpredictions != '') {
-		vpredictions = JSON.parse(mpredictions);
+		var mpredictionsconverted = mpredictions.replace(/&#39;/ig,'"');
+		vpredictions = JSON.parse(mpredictionsconverted);
 	}
 
 	setTimeout(function(){	
