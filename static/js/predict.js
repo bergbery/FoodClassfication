@@ -21,7 +21,7 @@ function searchAndDisplayWiki(_vpredictresult) {
 	var vdata = '';
 	$.ajax({
 		type: "GET",
-		url: "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + _vpredictresult + "&callback=?",
+		url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + _vpredictresult + "&callback=?",
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		dataType: "json",
@@ -46,7 +46,7 @@ function searchAndDisplayWiki(_vpredictresult) {
 function displayWikiContent(_firstresult) {
 	$.ajax({
 		type: "GET",
-		url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + _firstresult + "&callback=?",
+		url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + _firstresult + "&callback=?",
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		dataType: "json",
