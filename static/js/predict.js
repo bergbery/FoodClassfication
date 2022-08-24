@@ -3,8 +3,8 @@ $(document).ready(function () {
 	var vpredictions = {
 		"class1": '',
 		"class2": ',
-		"prob1":0.9,
-		"prob2":0.1,
+		"prob1":0,
+		"prob2":0,
 	}
 	if (mpredictions != '') {
 		vpredictions = JSON.Parse(mpredictions);
