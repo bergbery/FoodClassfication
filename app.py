@@ -37,8 +37,9 @@ def prediction(filename):
     #Step 2
     my_image_re = resize(my_image, (32,32,3))
     #step 2a
-    with open(my_image, "wb") as fh:
-    var vimage64 = fh.write(base64.urlsafe_b64decode('data'))
+    print(my_image);
+    //with open(my_image, "wb") as fh:
+    //var vimage64 = fh.write(base64.urlsafe_b64decode('data'))
     
     #Step 3
     #with graph.as_default():
