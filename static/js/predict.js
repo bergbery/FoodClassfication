@@ -7,7 +7,7 @@ $(document).ready(function () {
 		"prob2":0,
 	}
 	if (mpredictions != '') {
-		vpredictions = JSON.Parse(mpredictions);
+		vpredictions = JSON.parse(mpredictions);
 	}
 
 	setTimeout(function(){	
