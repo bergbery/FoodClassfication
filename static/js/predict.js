@@ -62,9 +62,10 @@ function displayWikiContent(_firstresult) {
 			
 			//## remove further link
 			//blurb.find('.infobox-title.fn').remove();
-			//blurb.find('.infobox-below').closest('tr').remove();
+			blurb.find('.infobox-below').closest('tr').remove();
 			//blurb.find('.thumb.tright').remove();
-			//blurb.find('.mw-references-wrap.mw-references-columns').remove();
+			//blurb.find('.mw-references-wrap.mw-references-columns').remove();			
+			blurb.find('table.infobox').remove();
 			blurb.find('.mw-references-wrap').remove();
 			
 			// remove any references
