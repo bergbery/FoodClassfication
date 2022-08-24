@@ -8,7 +8,8 @@ $(document).ready(function () {
 	//}
 
 	setTimeout(function(){	
-		var vpredictresult = '{{ predictions.class1 }}';
+		//var vpredictresult = '{{ predictions.class1 }}';
+		var vpredictresult = myFunc({{ predictions | tojson }})
 		alert(vpredictresult);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
