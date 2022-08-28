@@ -3,13 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Prediction!</title>
+<title>Prediction</title>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 <!-- JQUERY -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- Boostrap 4 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!--<js>-->
+
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='assets/favicon.ico') }}" />
+<!-- Bootstrap Icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+<!-- SimpleLightbox plugin CSS-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="{{ url_for('static',filename='css/styles.css') }}" rel="stylesheet" />
+
 <!--<js>-->
 <script type="text/javascript">
 	var mpredictions = '{{ predictions }}';
@@ -18,173 +31,402 @@
 <!--<css>-->
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/predict.css') }}"/>
 </head> 
-<body> 
-<div id="maintext" style="position:absolute; margin:auto; width:700px; height:300px; text-align:center; top:0; bottom: 0; left: 0; right: 0;">
-	<h1 class="mb-5">You have uploaded</h1>
-	<h2 class="mb-5">{{ predictions.class1 }}</h2>	
-	<img id="uploadedimg" src="" alt="Uploaded Image" width="64" height="64">
-	<br/>
-	<br/>
-	<h3 class="">About: {{ predictions.class1 }}</h3>
-	<div id="wikidescription"></div>
-	<h4 class="">More Details</h4>
-	<p>
-	  <a class="btn btn-primary CharKwayTeow hidectrl" data-toggle="collapse" data-target="#IngredientCharKwayTeow" role="button" aria-expanded="false" aria-controls="Ingredient">Ingredient</a>
-	  <a class="btn btn-primary CharKwayTeow hidectrl" data-toggle="collapse" data-target="#ReceipeCharKwayTeow" role="button" aria-expanded="false" aria-controls="Receipe">Receipe</a>
-	  <a class="btn btn-primary NasiLemak hidectrl" data-toggle="collapse" data-target="#IngredientNasiLemak" role="button" aria-expanded="false" aria-controls="IngredientNasiLemak">Ingredient</a>
-	  <a class="btn btn-primary NasiLemak hidectrl" data-toggle="collapse" data-target="#ReceipeNasiLemak" role="button" aria-expanded="false" aria-controls="ReceipeNasiLemak">Receipe</a>
-	</p>
-	<div class="row">
-	  <div class="col">
-		<div class="collapse multi-collapse" id="IngredientCharKwayTeow">
-			<div class="card card-body">
-				<ul>
-					<li>
-					2 tbsp vegetable oil, plus 1 extra tablespoon
-					</li>
-					<li>
-					4 garlic cloves, roughly chopped
-					</li>
-					<li>
-					50g (1.7 oz) thinly sliced Chinese sausage*
-					</li>
-					<li>
-					50g (1.7 oz) thinly sliced Asian fishcakes*
-					</li>
-					<li>
-					8 small prawns, peeled and deveined
-					</li>
-					<li>
-					2 eggs, lightly whisked
-					</li>
-					<li>
-					350g (12 oz) fresh rice noodles
-					</li>
-					<li>
-					ź cup bean shoots
-					</li>
-					<li>
-					2 stems Chinese garlic chives, cut into batons (alternatively, use spring onion/scallions)
-					</li>
+<body style="background-color:black"> 
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="#page-top">Classify your Image</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto my-2 my-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+					<li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+					<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 		</div>
-	  </div>
-	  <div class="col">
-		<div class="collapse multi-collapse" id="ReceipeCharKwayTeow">
-			<div class="card card-body">
-				<ul>
-					<li>
-					Step 1
-						For the chilli paste, soak the dried red chillies in hot water for 15 minutes or until softened. Then use tongs to remove them from the soaking liquid. Reserve the soaking liquid in case you need it when blending. Roughly chop the chillies and place them in the bowl of a food processor. Add the fresh chillies, shallots and salt. Blend until smooth (add a tablespoon of the chilli soaking liquid if your food processor gets stuck).
-					</li>
-					<li>
-					Step 2
-						Heat 4 tablespoons of vegetable oil in a frying pan over medium heat. Add the chilli paste and cook, stirring, for about 5 minutes. Transfer the chilli paste to a jar.
-					</li>
-					<li>
-					Step 3
-						For the stir-fry sauce, mix the ingredients in a small bowl and set aside for later.
-					</li>
-					<li>
-					Step 4
-						Heat 2 tablespoons of vegetable oil in a wok or large frying pan over high heat. Add the garlic and stir-fry for 5 seconds. Then add the Chinese sausage and stir-fry for another 10 seconds. Then add the fishcakes and the prawns. Stir-fry until the prawns are almost cooked. Then add 2 heaped tablespoons (or to taste) of the chilli paste. Toss to combine. Then push the ingredients out to the side of the pan to make room in the middle. Add a tablespoon of oil to the centre of the pan. Then pour in the eggs. Use your spatula to spread the eggs out. Once the eggs are set, toss them around with the remaining ingredients.
-					</li>
-					<li>
-					Step 5
-						Now add the noodles and the stir-fry sauce. Stir-fry until well combined. Then toss through the bean shoots and the Chinese chives. Remove from heat and serve.
-					</li>
-					<li>
-					Notes:
-						– You’ll have more chilli paste than you need for this recipe. Simply store it in the fridge for up to a month. Use it to add a chilli kick to just about anything…stir-fries, grilled meats or breakfast eggs.
-						– Chinese sausage, also known as lap cheong is a sweet preserved pork sausage. It can be bought online or from an Asian grocery store.
-						– Asian fishcakes are available in the fridge or freezer section of any Asian grocery store.
-					</li>
-				</ul>
+	</nav>
+	<!-- Masthead-->
+	<header class="masthead">
+		<div class="container px-4 px-lg-5 h-100">
+			<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+				<div class="col-lg-8 align-self-end">
+					<h1 class="mb-5">You have uploaded</h1>
+					<h2 class="mb-5">{{ predictions.class1 }}</h2>	
+					<img id="uploadedimg" src="" alt="Uploaded Image" width="64" height="64" style="width:64px;height:64px">						
+					<hr class="divider" />
+				</div>
+				<div class="col-lg-8 align-self-baseline">
+					<div id="maintext" style="display: block;">	
+						<br/>
+						<br/>
+						<h3 class="">About: {{ predictions.class1 }}</h3>
+						<div id="wikidescription"></div>
+						<h4 class="">More Details</h4>
+						<p>
+						  <a class="btn btn-primary CharKwayTeow hidectrl" data-toggle="collapse" data-target="#IngredientCharKwayTeow" role="button" aria-expanded="false" aria-controls="Ingredient">Ingredient</a>
+						  <a class="btn btn-primary CharKwayTeow hidectrl" data-toggle="collapse" data-target="#ReceipeCharKwayTeow" role="button" aria-expanded="false" aria-controls="Receipe">Receipe</a>
+						  <a class="btn btn-primary NasiLemak hidectrl" data-toggle="collapse" data-target="#IngredientNasiLemak" role="button" aria-expanded="false" aria-controls="IngredientNasiLemak">Ingredient</a>
+						  <a class="btn btn-primary NasiLemak hidectrl" data-toggle="collapse" data-target="#ReceipeNasiLemak" role="button" aria-expanded="false" aria-controls="ReceipeNasiLemak">Receipe</a>
+						</p>
+						<div class="row">
+						  <div class="col">
+							<div class="collapse multi-collapse" id="IngredientCharKwayTeow">
+								<div class="card card-body">
+									<ul>
+										<li>
+										2 tbsp vegetable oil, plus 1 extra tablespoon
+										</li>
+										<li>
+										4 garlic cloves, roughly chopped
+										</li>
+										<li>
+										50g (1.7 oz) thinly sliced Chinese sausage*
+										</li>
+										<li>
+										50g (1.7 oz) thinly sliced Asian fishcakes*
+										</li>
+										<li>
+										8 small prawns, peeled and deveined
+										</li>
+										<li>
+										2 eggs, lightly whisked
+										</li>
+										<li>
+										350g (12 oz) fresh rice noodles
+										</li>
+										<li>
+										ź cup bean shoots
+										</li>
+										<li>
+										2 stems Chinese garlic chives, cut into batons (alternatively, use spring onion/scallions)
+										</li>
+									</ul>
+								</div>
+							</div>
+						  </div>
+						  <div class="col">
+							<div class="collapse multi-collapse" id="ReceipeCharKwayTeow">
+								<div class="card card-body">
+									<ul>
+										<li>
+										Step 1
+											For the chilli paste, soak the dried red chillies in hot water for 15 minutes or until softened. Then use tongs to remove them from the soaking liquid. Reserve the soaking liquid in case you need it when blending. Roughly chop the chillies and place them in the bowl of a food processor. Add the fresh chillies, shallots and salt. Blend until smooth (add a tablespoon of the chilli soaking liquid if your food processor gets stuck).
+										</li>
+										<li>
+										Step 2
+											Heat 4 tablespoons of vegetable oil in a frying pan over medium heat. Add the chilli paste and cook, stirring, for about 5 minutes. Transfer the chilli paste to a jar.
+										</li>
+										<li>
+										Step 3
+											For the stir-fry sauce, mix the ingredients in a small bowl and set aside for later.
+										</li>
+										<li>
+										Step 4
+											Heat 2 tablespoons of vegetable oil in a wok or large frying pan over high heat. Add the garlic and stir-fry for 5 seconds. Then add the Chinese sausage and stir-fry for another 10 seconds. Then add the fishcakes and the prawns. Stir-fry until the prawns are almost cooked. Then add 2 heaped tablespoons (or to taste) of the chilli paste. Toss to combine. Then push the ingredients out to the side of the pan to make room in the middle. Add a tablespoon of oil to the centre of the pan. Then pour in the eggs. Use your spatula to spread the eggs out. Once the eggs are set, toss them around with the remaining ingredients.
+										</li>
+										<li>
+										Step 5
+											Now add the noodles and the stir-fry sauce. Stir-fry until well combined. Then toss through the bean shoots and the Chinese chives. Remove from heat and serve.
+										</li>
+										<li>
+										Notes:
+											– You’ll have more chilli paste than you need for this recipe. Simply store it in the fridge for up to a month. Use it to add a chilli kick to just about anything…stir-fries, grilled meats or breakfast eggs.
+											– Chinese sausage, also known as lap cheong is a sweet preserved pork sausage. It can be bought online or from an Asian grocery store.
+											– Asian fishcakes are available in the fridge or freezer section of any Asian grocery store.
+										</li>
+									</ul>
+								</div>
+							</div>
+						  </div>
+						  <div class="col">
+							<div class="collapse multi-collapse" id="IngredientNasiLemak">
+								<div class="card card-body">
+									<ul>
+										<li>
+											2 cups jasmine rice
+										</li>
+										<li>
+											400g (14 fl oz) can coconut milk 
+										</li>
+										<li>
+											1 lemongrass stalk 
+										</li>
+										<li>
+											fried peanuts, to serve
+										</li>
+										<li>
+											hard boiled eggs, halved, to serve
+										</li>
+										<li>
+											sliced cucumber, to serve
+										</li>
+										<li>
+											ayam goreng (Malaysian Fried Chicken), to serve (optional)
+										</li>
+									</ul>
+								</div>
+							</div>
+						  </div>
+						  <div class="col">
+							<div class="collapse multi-collapse" id="ReceipeNasiLemak">
+								<div class="card card-body">
+									<ul>
+										<li>
+										Step 1
+											To cook the rice, add the rice, coconut milk and lemongrass into a saucepan. Settle the rice evenly into the bottom of the saucepan. Place your finger on top of the rice and add enough water so that the liquid comes up to your first knuckle. Place over a medium-high heat and simmer for 10 minutes or until most of the liquid has evaporated. Then place a lid on and reduce the heat to low and cook for another 2 minutes. Then turn the heat off and allow to sit, covered, for 10 minutes. 
+										</li>
+										<li>
+										Step 2
+											For the spicy ikan bilis sambal, soak the dried chillies in hot water for 15 minutes to soften. Drain the chillies squeezing out the excess liquid. Reserve the soaking liquid. 
+										</li>
+										<li>
+										Step 3
+											Place the soaked chillies in the bowl of a small food processor along with the fresh chilli, shallot, garlic and shrimp paste. Process until a coarse paste forms.  
+										</li>
+										<li>
+										Step 4
+											Heat the oil in a wok over high heat. Add the anchovies and cook, stirring often, for 5 minutes or until crisp. Use a slotted spoon to transfer to a plate lined with paper towel. Add the onion to the pan. Cook, stirring occasionally, for 5 minutes. Transfer to the plate with the anchovies. Add the chilli mixture to the wok. Reduce heat to low. Cook, stirring often for 5 minutes or until the red oil rises to the surface. Add the sugar, tamarind and 2 tablespoons of the chilli soaking liquid. Simmer for 5 minutes or until reduced. Stir in the anchovies and onion. Transfer to a bowl.  
+										</li>
+										<li>
+										Step 5
+											When ready to serve, use a fork to fluff up the coconut rice. Serve the rice with the spicy ikan bilis sambal, peanuts, egg, cucumber and ayam goreng (if using). 
+										</li>
+										<li>
+										Notes:
+											– Typically, this rice is infused with pandan leaves, but I use lemongrass or ginger slices when I can’t find pandan leaves at my Asian grocery store. You could also just do coconut milk without the extra aromatics. 
+											– Ikan bilis are a dried anchovy fish that are sold through Asian grocery stores. They can be sold ‘fresh’ frozen (in which case you need to cook them as I have here) or they can be bought shelf-stable and already fried, in which case you can just add them into the sambal without having to fry them first. 
+										</li>
+									</ul>
+								</div>
+							</div>
+						  </div>
+						</div>
+						<table class="table-bordered text-light hidectrl" style="width:100%">
+							<tr>
+								<th>Rank</th>
+								<th>Class</th>
+								<th>Probability</th>
+								</tr>
+								<tr>
+								<td>Most Likely:</td>
+								<td></td>
+								<td>{{ predictions.prob1 }}</td>
+								</tr>
+								<tr>
+								<td>2nd Most Likely:</td>
+								<td>{{ predictions.class2 }}</td> 
+								<td>{{ predictions.prob2 }}</td> 
+							</tr> 
+						</table> 
+						<a href="{{ url_for('main_page') }}"><button class="button mt-3">Try again?</button></a>
+					</div>					
+				</div>
 			</div>
 		</div>
-	  </div>
-	  <div class="col">
-		<div class="collapse multi-collapse" id="IngredientNasiLemak">
-			<div class="card card-body">
-				<ul>
-					<li>
-						2 cups jasmine rice
-					</li>
-					<li>
-						400g (14 fl oz) can coconut milk 
-					</li>
-					<li>
-						1 lemongrass stalk 
-					</li>
-					<li>
-						fried peanuts, to serve
-					</li>
-					<li>
-						hard boiled eggs, halved, to serve
-					</li>
-					<li>
-						sliced cucumber, to serve
-					</li>
-					<li>
-						ayam goreng (Malaysian Fried Chicken), to serve (optional)
-					</li>
-				</ul>
+	</header>
+	<!-- About-->
+	<section class="page-section bg-primary" id="about">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-lg-8 text-center">
+					<h2 class="text-white mt-0">We've got what you need!</h2>
+					<hr class="divider divider-light" />
+					<p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+					<a class="btn btn-light btn-xl" href="#services">Get Started!</a>
+				</div>
 			</div>
 		</div>
-	  </div>
-	  <div class="col">
-		<div class="collapse multi-collapse" id="ReceipeNasiLemak">
-			<div class="card card-body">
-				<ul>
-					<li>
-					Step 1
-						To cook the rice, add the rice, coconut milk and lemongrass into a saucepan. Settle the rice evenly into the bottom of the saucepan. Place your finger on top of the rice and add enough water so that the liquid comes up to your first knuckle. Place over a medium-high heat and simmer for 10 minutes or until most of the liquid has evaporated. Then place a lid on and reduce the heat to low and cook for another 2 minutes. Then turn the heat off and allow to sit, covered, for 10 minutes. 
-					</li>
-					<li>
-					Step 2
-						For the spicy ikan bilis sambal, soak the dried chillies in hot water for 15 minutes to soften. Drain the chillies squeezing out the excess liquid. Reserve the soaking liquid. 
-					</li>
-					<li>
-					Step 3
-						Place the soaked chillies in the bowl of a small food processor along with the fresh chilli, shallot, garlic and shrimp paste. Process until a coarse paste forms.  
-					</li>
-					<li>
-					Step 4
-						Heat the oil in a wok over high heat. Add the anchovies and cook, stirring often, for 5 minutes or until crisp. Use a slotted spoon to transfer to a plate lined with paper towel. Add the onion to the pan. Cook, stirring occasionally, for 5 minutes. Transfer to the plate with the anchovies. Add the chilli mixture to the wok. Reduce heat to low. Cook, stirring often for 5 minutes or until the red oil rises to the surface. Add the sugar, tamarind and 2 tablespoons of the chilli soaking liquid. Simmer for 5 minutes or until reduced. Stir in the anchovies and onion. Transfer to a bowl.  
-					</li>
-					<li>
-					Step 5
-						When ready to serve, use a fork to fluff up the coconut rice. Serve the rice with the spicy ikan bilis sambal, peanuts, egg, cucumber and ayam goreng (if using). 
-					</li>
-					<li>
-					Notes:
-						– Typically, this rice is infused with pandan leaves, but I use lemongrass or ginger slices when I can’t find pandan leaves at my Asian grocery store. You could also just do coconut milk without the extra aromatics. 
-						– Ikan bilis are a dried anchovy fish that are sold through Asian grocery stores. They can be sold ‘fresh’ frozen (in which case you need to cook them as I have here) or they can be bought shelf-stable and already fried, in which case you can just add them into the sambal without having to fry them first. 
-					</li>
-				</ul>
+	</section>
+	<!-- Services-->
+	<section class="page-section" id="services">
+		<div class="container px-4 px-lg-5">
+			<h2 class="text-center mt-0">At Your Service</h2>
+			<hr class="divider" />
+			<div class="row gx-4 gx-lg-5">
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="mt-5">
+						<div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
+						<h3 class="h4 mb-2">Sturdy Themes</h3>
+						<p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="mt-5">
+						<div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
+						<h3 class="h4 mb-2">Up to Date</h3>
+						<p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="mt-5">
+						<div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
+						<h3 class="h4 mb-2">Ready to Publish</h3>
+						<p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="mt-5">
+						<div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
+						<h3 class="h4 mb-2">Made with Love</h3>
+						<p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+					</div>
+				</div>
 			</div>
 		</div>
-	  </div>
+	</section>
+	<!-- Portfolio-->
+	<div id="portfolio">
+		<div class="container-fluid p-0">
+			<div class="row g-0">
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/assets/img/portfolio/fullsize/1.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/1.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/img/portfolio/fullsize/2.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/2.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/img/portfolio/fullsize/3.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/3.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/img/portfolio/fullsize/4.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/4.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/img/portfolio/fullsize/5.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/5.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a class="portfolio-box" href="{{ url_for('static',filename='assets/img/portfolio/fullsize/6.jpg') }}" title="Project Name">
+						<img class="img-fluid" src="{{ url_for('static',filename='assets/img/portfolio/thumbnails/6.jpg') }}" alt="..." />
+						<div class="portfolio-box-caption p-3">
+							<div class="project-category text-white-50">Category</div>
+							<div class="project-name">Project Name</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
-	<table class="table-bordered text-light hidectrl" style="width:100%">
-		<tr>
-			<th>Rank</th>
-			<th>Class</th>
-			<th>Probability</th>
-			</tr>
-			<tr>
-			<td>Most Likely:</td>
-			<td></td>
-			<td>{{ predictions.prob1 }}</td>
-			</tr>
-			<tr>
-			<td>2nd Most Likely:</td>
-			<td>{{ predictions.class2 }}</td> 
-			<td>{{ predictions.prob2 }}</td> 
-		</tr> 
-	</table> 
-	<a href="{{ url_for('main_page') }}"><button class="button mt-3">Try again?</button></a>
-</div>
+	<!-- Contact-->
+	<section class="page-section" id="contact">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-lg-8 col-xl-6 text-center">
+					<h2 class="mt-0">Let's Get In Touch!</h2>
+					<hr class="divider" />
+					<p class="text-muted mb-5">If you have more dishes that you would like to see, please provide your contact!</p>
+				</div>
+			</div>
+			<div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+				<div class="col-lg-6">
+					<!-- * * * * * * * * * * * * * * *-->
+					<!-- * * SB Forms Contact Form * *-->
+					<!-- * * * * * * * * * * * * * * *-->
+					<!-- This form is pre-integrated with SB Forms.-->
+					<!-- To make this form functional, sign up at-->
+					<!-- https://startbootstrap.com/solution/contact-forms-->
+					<!-- to get an API token!-->
+					<form id="contactForm" data-sb-form-api-token="API_TOKEN">
+						<!-- Name input-->
+						<div class="form-floating mb-3">
+							<input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+							<label for="name">Full name</label>
+							<div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+						</div>
+						<!-- Email address input-->
+						<div class="form-floating mb-3">
+							<input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+							<label for="email">Email address</label>
+							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+						</div>
+						<!-- Phone number input-->
+						<div class="form-floating mb-3">
+							<input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+							<label for="phone">Phone number</label>
+							<div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+						</div>
+						<!-- Message input-->
+						<div class="form-floating mb-3">
+							<textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+							<label for="message">Message</label>
+							<div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+						</div>
+						<!-- Submit success message-->
+						<!---->
+						<!-- This is what your users will see when the form-->
+						<!-- has successfully submitted-->
+						<div class="d-none" id="submitSuccessMessage">
+							<div class="text-center mb-3">
+								<div class="fw-bolder">Form submission successful!</div>
+								To activate this form, sign up at
+								<br />
+								<a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+							</div>
+						</div>
+						<!-- Submit error message-->
+						<!---->
+						<!-- This is what your users will see when there is-->
+						<!-- an error submitting the form-->
+						<div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+						<!-- Submit Button-->
+						<div class="d-grid"><button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button></div>
+					</form>
+				</div>
+			</div>
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-lg-4 text-center mb-5 mb-lg-0">
+					<i class="bi-phone fs-2 mb-3 text-muted"></i>
+					<div>(+65) 9123 4567</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<footer class="bg-light py-5">
+		<div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - AI Team 3</div></div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- SimpleLightbox plugin JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+	<!-- Core theme JS-->
+	<script type="text/javascript" src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	<!-- * *                               SB Forms JS                               * *-->
+	<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>
