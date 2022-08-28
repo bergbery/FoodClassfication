@@ -1,3 +1,7 @@
 .hidectrl {
 	display: none;
 }
+
+#wikidescription {
+	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
