@@ -54,7 +54,7 @@ function displayWikiContent(_firstresult) {
 	$.ajax({
 		type: "GET",
 		//url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + _firstresult + "&callback=?&",
-		url: " http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + _firstresult + "&callback=?&",
+		url: " https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + _firstresult + "&callback=?&",
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		dataType: "json",
