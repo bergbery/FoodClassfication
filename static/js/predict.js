@@ -112,3 +112,18 @@ function displayWiki(apiResult){
 		$('#wikidescription').append('<p>'+apiResult.query.search[i].title+'</p>');
 	}
 }
+
+
+function onclick_Ingredient(_this) {
+	//## show Ingredient Button
+	$('button.ingredient').removeClass('hideCtrl');
+	//## hide Receipe Button
+	$('button.receipe').addClass('hideCtrl');
+}
+
+function onclick_Receipe(_this) {
+	//## show Receipe Button
+	$('button.receipe').removeClass('hideCtrl');
+	//## hide Ingredient Button
+	$('button.ingredient').addClass('hideCtrl');
+}
