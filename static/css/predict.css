@@ -5,3 +5,38 @@
 #wikidescription {
 	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
+
+header.masthead {
+	
+    display: table;
+    width: 100%;
+}
+table.ingredienttbl {
+	background: white;
+}
+table.ingredienttbl thead {
+	background-color: #3f87a6;
+    color: #fff;
+}
+table.ingredienttbl thead td {
+	font: 700 24px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+table.ingredienttbl tbody td {
+	text-align: left;
+	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+table.receipetbl {
+	background: white;
+}
+table.receipetbl thead {
+	background-color: #3f87a6;
+    color: #fff;
+}
+table.receipetbl thead td {
+	font: 700 24px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+table.receipetbl tbody td {
+	text-align: left;
+	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
