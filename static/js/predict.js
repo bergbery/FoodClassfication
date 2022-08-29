@@ -16,6 +16,8 @@ $(document).ready(function () {
 		//var vuploadedimg = vpredictions.image64;
 		//$('#uploadedimg').attr('src, vuploadedimg);
 		//alert(vpredictresult);
+		var vfilename = vpredictions.filename;
+		$('#uploadedimg').attr('src', 'uploads/'+vfilename);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
 		//## turn on collapse
