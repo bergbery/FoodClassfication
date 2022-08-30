@@ -152,52 +152,28 @@ function onclick_submit(_this) {
 			} else if (result.isDenied) {
 				//Swal.fire('Changes are not saved', '', 'info')
 			}
-		})	
-	/*Swal.fire({
-			title: 'Error!',
-			html: 'Nothing to Delete',
-			icon: 'error',
-			showDenyButton: false,
-			showCancelButton: false,
-			confirmButtonText: 'Ok',
-			denyButtonText: '',
-		});*/
+		})
 }
 
 function onclick_export(_this) {
-	var swal_html = constructCheckedIngredient();
 	Swal.fire({
-			title:"Submit to Ecommerce?", 
-			html: swal_html,
+			title:"Export to PDF?", 
+			html: '',
 			showDenyButton: true,
 			showCancelButton: false,
 			confirmButtonText: 'Submit',
 			denyButtonText: 'Cancel'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				swal({
-					title:"Order had been submitted!", 
-					html: "Thank you",
-					showDenyButton: false,
-					showCancelButton: false,
-					confirmButtonText: 'OK',
-					denyButtonText: ''
-				});
+				var vtableCtrlId = 'IngredientCharKwayTeow';
+				createPDF($('#' + vtableCtrlId)[0]);
 			} else if (result.isDenied) {
 				//Swal.fire('Changes are not saved', '', 'info')
 			}
 		})	
-	/*Swal.fire({
-			title: 'Error!',
-			html: 'Nothing to Delete',
-			icon: 'error',
-			showDenyButton: false,
-			showCancelButton: false,
-			confirmButtonText: 'Ok',
-			denyButtonText: '',
-		});*/
 }
 
+//## construct table  for checked ingredient
 function constructCheckedIngredient() {
 	//## Loop Ingredient Table	
 	var vsummarytable = `<table class="table-bordered summarytbl" style="width:100%">
@@ -238,4 +214,20 @@ function constructCheckedIngredient() {
 		vsummarytable = '';
 	}
 	return vsummarytable;					
+}
+
+//## create PDF
+function createPDF(_tableCtrl) {
+	html2canvas(_tableCtrl, {
+		onrendered: function (canvas) {
+			var data = canvas.toDataURL();
+			var docDefinition = {
+				content: [{
+					image: data,
+					width: 500
+				}]
+			};
+			pdfMake.createPdf(docDefinition).download("download.pdf");
+		}
+	});
 }
