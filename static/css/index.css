@@ -1,3 +1,7 @@
+.hidectrl {
+	display: none;
+}
+
 .bodypos {
 	position: absolute;
     margin: auto;

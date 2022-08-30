@@ -58,10 +58,15 @@ table.summarytbl tbody td {
 	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 table.summarytbl tfoot {
-	background-color: #7096a7;
+	background-color: #8b9aa1;
     color: #fff;
 }
 table.summarytbl tfoot td {
 	text-align: left;
-	font: 400 20px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+table.summarytbl tfoot td.totalamount {
+	text-align: right;
+	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }

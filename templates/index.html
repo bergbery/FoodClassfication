@@ -78,7 +78,7 @@
 							<p class="text-white">
 								<div class="button_outer">
 									<div class="btn_upload">
-										<input type=file name=file>
+										<input type=file name=file onchange="onchange_submitfile(this);">
 										Upload Image
 									</div>
 									<div class="processing_bar"></div>
@@ -86,7 +86,7 @@
 								</div>  
 								<br/>	
 								<br/>				
-								<button type="submit" class="btn btn-primary" value="Upload">Go</button>
+								<button id="submituploadfile" type="submit" class="btn btn-primary hidectrl" value="Upload">Go</button>
 								<!--<input type=submit value=Upload>-->
 							</p>
 						</form> 
