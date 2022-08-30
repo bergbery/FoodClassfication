@@ -26,14 +26,14 @@ def main_page():
     if request.method == 'POST':
         file = request.files['file']
         filename = secure_filename(file.filename)
-        file.save(os.path.join('uploads', filename))
+        file.save(os.path.join('static/uploads', filename))
         return redirect(url_for('prediction', filename=filename))
     return render_template('index.html')
 
 @app.route('/prediction/<filename>') 
 def prediction(filename):
     #Step 1
-    my_image = plt.imread(os.path.join('uploads', filename))
+    my_image = plt.imread(os.path.join('static/uploads', filename))
     #Step 2
     my_image_re = resize(my_image, (32,32,3))
     #step 2a
@@ -56,6 +56,7 @@ def prediction(filename):
       "class2":number_to_class[index[0]],
       "prob1":probabilities[index[1]],
       "prob2":probabilities[index[0]],
+      "upload_filename":filename,
       #"image64": vimage64,
      }
     #Step 5

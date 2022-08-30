@@ -16,8 +16,9 @@ $(document).ready(function () {
 		//var vuploadedimg = vpredictions.image64;
 		//$('#uploadedimg').attr('src, vuploadedimg);
 		//alert(vpredictresult);
-		var vfilename = vpredictions.filename;
-		$('#uploadedimg').attr('src', 'uploads/'+vfilename);
+		var vfilename = vpredictions.upload_filename;
+		//$('#uploadfile').attr('src',"{{ url_for('static',filename='uploads/"+vfilename+"') }}", );
+		$('#uploadfile').attr('src',"../static/uploads/"+vfilename);
 		//## search wiki and display result
 		searchAndDisplayWiki(vpredictresult);
 		//## turn on collapse
@@ -115,15 +116,15 @@ function displayWiki(apiResult){
 
 
 function onclick_Ingredient(_this) {
-	//## show Ingredient Button
-	$('button.ingredient').removeClass('hideCtrl');
 	//## hide Receipe Button
-	$('button.receipe').addClass('hideCtrl');
+	$('button.receipe').addClass('hidectrl');
+	//## show Ingredient Button
+	$('button.ingredient').removeClass('hidectrl');	
 }
 
 function onclick_Receipe(_this) {
 	//## show Receipe Button
-	$('button.receipe').removeClass('hideCtrl');
+	$('button.receipe').removeClass('hidectrl');
 	//## hide Ingredient Button
-	$('button.ingredient').addClass('hideCtrl');
+	$('button.ingredient').addClass('hidectrl');
 }
