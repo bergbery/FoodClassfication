@@ -10,6 +10,9 @@
 <!-- Boostrap 4 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Sweetalert2 -->
+<!--<script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='assets/favicon.ico') }}" />
@@ -460,8 +463,8 @@
 							</div>
 						  </div>
 						  <p>
-							  <button class="btn btn-primary ingredient hidectrl">Submit to eCommerce</button>
-							  <button class="btn btn-primary ingredient receipe hidectrl">Export</button>
+							  <button class="btn btn-primary ingredient hidectrl" onclick="onclick_submit(this);">Submit to eCommerce</button>
+							  <button class="btn btn-primary ingredient receipe hidectrl" onclick="onclick_export(this);">Export</button>
 						  </p>
 						</div>
 						<table class="table-bordered text-light hidectrl" style="width:100%">

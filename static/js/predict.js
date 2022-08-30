@@ -128,3 +128,114 @@ function onclick_Receipe(_this) {
 	//## hide Ingredient Button
 	$('button.ingredient').addClass('hidectrl');
 }
+
+function onclick_submit(_this) {
+	var swal_html = constructCheckedIngredient();
+	Swal.fire({
+			title:"Submit to Order?", 
+			html: swal_html,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: 'Submit',
+			denyButtonText: 'Cancel'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					title:"Order had been submitted!", 
+					html: "Thank you",
+					icon: 'success',
+					showDenyButton: false,
+					showCancelButton: false,
+					confirmButtonText: 'OK',
+					denyButtonText: ''
+				});
+			} else if (result.isDenied) {
+				//Swal.fire('Changes are not saved', '', 'info')
+			}
+		})	
+	/*Swal.fire({
+			title: 'Error!',
+			html: 'Nothing to Delete',
+			icon: 'error',
+			showDenyButton: false,
+			showCancelButton: false,
+			confirmButtonText: 'Ok',
+			denyButtonText: '',
+		});*/
+}
+
+function onclick_export(_this) {
+	var swal_html = constructCheckedIngredient();
+	Swal.fire({
+			title:"Submit to Ecommerce?", 
+			html: swal_html,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: 'Submit',
+			denyButtonText: 'Cancel'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				swal({
+					title:"Order had been submitted!", 
+					html: "Thank you",
+					showDenyButton: false,
+					showCancelButton: false,
+					confirmButtonText: 'OK',
+					denyButtonText: ''
+				});
+			} else if (result.isDenied) {
+				//Swal.fire('Changes are not saved', '', 'info')
+			}
+		})	
+	/*Swal.fire({
+			title: 'Error!',
+			html: 'Nothing to Delete',
+			icon: 'error',
+			showDenyButton: false,
+			showCancelButton: false,
+			confirmButtonText: 'Ok',
+			denyButtonText: '',
+		});*/
+}
+
+function constructCheckedIngredient() {
+	//## Loop Ingredient Table	
+	var vsummarytable = `<table class="table-bordered summarytbl" style="width:100%">
+							<thead>
+								<tr>
+									<td>Ingredient</td>
+									<td>Amount</td>
+								</tr>
+							</thead>
+							<tbody>`;
+	var vtotalAmount = 0;
+	$('.ingredienttbl').find('tbody tr').each(function (trindex, trrow) {
+		var vischecked = $(trrow).find('.checkbox').is(':checked');
+		if (vischecked == true) {
+			var vIngredient = $(trrow).find("td:eq(1)").text();
+			var vAmount = $(trrow).find("td:eq(2)").text();
+			vtotalAmount += parseFloat(vAmount);
+			//## concat row
+			vsummarytable += `<tr>
+									<td>`+vIngredient+`</td>
+									<td>`+vAmount+`</td>
+								</tr>`;
+			
+			
+		}
+	});	
+	//## concat total Amount row
+	vsummarytable += `</tbody>
+					<tfoot>
+						<tr>
+							<td>Total Amount</td>
+							<td>`+vtotalAmount+`</td>
+						</tr>
+					</tfoot>
+				</table>`;
+	
+	if (vtotalAmount == 0) {
+		vsummarytable = '';
+	}
+	return vsummarytable;					
+}

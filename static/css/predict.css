@@ -26,6 +26,7 @@ table.ingredienttbl tbody td {
 	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 
+
 table.receipetbl {
 	background: white;
 }
@@ -39,4 +40,28 @@ table.receipetbl thead td {
 table.receipetbl tbody td {
 	text-align: left;
 	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+
+table.summarytbl {
+	background: white;
+}
+table.summarytbl thead {
+	background-color: #3f87a6;
+    color: #fff;
+}
+table.summarytbl thead td {
+	font: 700 24px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+table.summarytbl tbody td {
+	text-align: left;
+	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+table.summarytbl tfoot {
+	background-color: #7096a7;
+    color: #fff;
+}
+table.summarytbl tfoot td {
+	text-align: left;
+	font: 400 20px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
