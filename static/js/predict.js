@@ -132,17 +132,49 @@ function displaymoredetail(vpredictresult) {
 }
 
 function onclick_Ingredient(_this) {
-	//## hide Receipe Button
-	$('button.receipe').addClass('hidectrl');
-	//## show Ingredient Button
-	$('button.ingredient').removeClass('hidectrl');	
+	setTimeout(function(){ 
+		var vrowcount = 0;
+		$('.detailrow').find('.foodcollapse').each(function (foodind, foodrow) {
+			if ($(foodrow).hasClass('show') == true) {
+				vrowcount = vrowcount + 1;
+			}
+		});
+		if (vrowcount > 0) {
+			//## hide Receipe Button
+			$('button.receipe').addClass('hidectrl');
+			//## show Ingredient Button
+			$('button.ingredient').removeClass('hidectrl');	
+		}
+		else {
+			//## hide Receipe Button
+			$('button.receipe').addClass('hidectrl');
+			//## hide Ingredient Button
+			$('button.ingredient').addClass('hidectrl');	
+		}
+	}, 500);
 }
 
 function onclick_Receipe(_this) {
-	//## hide Ingredient Button
-	$('button.ingredient').addClass('hidectrl');
-	//## show Receipe Button
-	$('button.receipe').removeClass('hidectrl');
+	setTimeout(function(){ 
+		var vrowcount = 0;
+		$('.detailrow').find('.foodcollapse').each(function (foodind, foodrow) {
+			if ($(foodrow).hasClass('show') == true) {
+				vrowcount = vrowcount + 1;
+			}
+		});
+		if (vrowcount > 0) {
+			//## hide Ingredient Button
+			$('button.ingredient').addClass('hidectrl');
+			//## show Receipe Button
+			$('button.receipe').removeClass('hidectrl');
+		}
+		else {
+			//## hide Ingredient Button
+			$('button.ingredient').addClass('hidectrl');
+			//## hide Receipe Button
+			$('button.receipe').addClass('hidectrl');	
+		}
+	}, 500);
 }
 
 function onclick_submit(_this) {
@@ -237,7 +269,7 @@ function constructCheckedIngredient() {
 			vsummarytable += `<tr>
 									<td>`+vrowno+`</td>
 									<td>`+vIngredient+`</td>
-									<td>`+parseFloat(vPrice).toFixed(2)+`</td>
+									<td class='centernumber'>`+parseFloat(vPrice).toFixed(2)+`</td>
 								</tr>`;
 			
 			//## increment row no
@@ -249,7 +281,7 @@ function constructCheckedIngredient() {
 					<tfoot>
 						<tr>
 							<td colspan='2' class='totalamount'>Total Amount</td>
-							<td>`+parseFloat(vtotalPrice).toFixed(2)+`</td>
+							<td class='centernumber'>`+parseFloat(vtotalPrice).toFixed(2)+`</td>
 						</tr>
 					</tfoot>
 				</table>`;

@@ -51,22 +51,29 @@
 		</div>
 	</nav>
 	<!-- Masthead-->
-	<header class="masthead">
+	<header class="masthead predict">
 		<div class="container px-4 px-lg-5 h-100">
 			<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-				<div class="col-lg-8 align-self-end">
-					<h1 class="mb-5">You have uploaded</h1>
-					<h2 class="mb-5">{{ predictions.class1 }}</h2>	
-					<img id="uploadfile" src="" alt="Uploaded Image" width="128" height="auto" style="width:128px;height:auto">						
+				<div class="col-lg-10 align-self-end">
+					<div class="col-lg-12 col-xs-12 text-white-75">
+						<h1>Great choice!</h1>
+						<h2>You have</h2>
+					</div>
+					<div class="col-lg-5 col-xs-12 text-red-100" style="float:left;">
+						<h3 class="colcenter">{{ predictions.class1 }}</h3>
+					</div>
+					<div class="col-lg-7 col-xs-12" style="float:left;">
+						<img id="uploadfile" src="" alt="Uploaded Image" width="256" height="auto" style="width:256px;height:auto">	
+					</div>
+				</div>
+				<div class="col-lg-10">
 					<hr class="divider" />
 				</div>
-				<div class="col-lg-8 align-self-baseline">
+				<div class="col-lg-10 align-self-baseline">
 					<div id="maintext" style="display: block;">	
-						<br/>
-						<br/>
-						<h3 class="">About: {{ predictions.class1 }}</h3>
-						<div id="wikidescription"></div>
-						<h4 class="">More Details</h4>
+						<h3 class="text-white-75">About: {{ predictions.class1 }}</h3>
+						<div id="wikidescription" class="text-white-75"></div>
+						<h4 class="text-white-75">More Details</h4>
 						<p>
 							<a class="btn btn-primary moredetailbtn ingredient hidectrl" data-toggle="collapse" data-target="#ingredient" role="button" aria-expanded="false" aria-controls="Ingredient" onclick="onclick_Ingredient(this);">Ingredient</a>
 							<a class="btn btn-primary moredetailbtn receipe hidectrl" data-toggle="collapse" data-target="#receipe" role="button" aria-expanded="false" aria-controls="receipe" onclick="onclick_Receipe(this);">Receipe</a>
@@ -120,6 +127,7 @@
 	<!-- Footer-->
 	<footer class="bg-light py-5">
 		<div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - AI Team 3</div></div>
+		<div class="container px-4 px-lg-5"><div class="small text-center text-muted">Disclaimer: Only Char Kway Teow and Nasi Lemak is supported in the current release</div></div>
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -150,145 +158,145 @@
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>garlic clove</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>pcs</td>
-					<td>2</td>
+					<td class='centernumber'>2.00</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>egg</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>pcs</td>
-					<td>3.4</td>
+					<td class='centernumber'>3.40</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>rice noodles</td>
-					<td>350</td>
+					<td class='centernumber'>350</td>
 					<td>gram</td>
-					<td>3.5</td>
+					<td class='centernumber'>3.50</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>bean shoots</td>
-					<td>0.25</td>
+					<td class='centernumber'>0.25</td>
 					<td>cup</td>
-					<td>2.3</td>
+					<td class='centernumber'>2.30</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>garlic chives</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>stem</td>
-					<td>2.7</td>
+					<td class='centernumber'>2.70</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>red chilies</td>
-					<td>50</td>
+					<td class='centernumber'>50</td>
 					<td>gram</td>
-					<td>2.1</td>
+					<td class='centernumber'>2.10</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>red shallots</td>
-					<td>3</td>
+					<td class='centernumber'>3</td>
 					<td>pcs</td>
-					<td>1.5</td>
+					<td class='centernumber'>1.50</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>vegetable oil</td>
-					<td>3</td>
+					<td class='centernumber'>3</td>
 					<td>tbsp</td>
-					<td>10.8</td>
+					<td class='centernumber'>10.80</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>sea salt</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>tsp</td>
-					<td>2.2</td>
+					<td class='centernumber'>2.20</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>soy sauce</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>tbsp</td>
-					<td>2.5</td>
+					<td class='centernumber'>2.50</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>oyster sauce</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tbsp</td>
-					<td>3.2</td>
+					<td class='centernumber'>3.20</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>fish sauce</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>tsp</td>
-					<td>2.1</td>
+					<td class='centernumber'>2.10</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>dark soy sauce</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tsp</td>
-					<td>2.2</td>
+					<td class='centernumber'>2.20</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>sugar</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tsp</td>
-					<td>2</td>
+					<td class='centernumber'>2.00</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>ground black pepper</td>
-					<td>0.25</td>
+					<td class='centernumber'>0.25</td>
 					<td>tsp</td>
-					<td>3.1</td>
+					<td class='centernumber'>3.10</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>Chinese sausage</td>
-					<td>50</td>
+					<td class='centernumber'>50</td>
 					<td>gram</td>
-					<td>9.1</td>
+					<td class='centernumber'>9.10</td>
 					<td>Row 6</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>fishcake</td>
-					<td>50</td>
+					<td class='centernumber'>50</td>
 					<td>gram</td>
-					<td>5</td>
+					<td class='centernumber'>5.00</td>
 					<td>Row 6</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>prawn</td>
-					<td>8</td>
+					<td class='centernumber'>8</td>
 					<td>pcs</td>
-					<td>7.2</td>
+					<td class='centernumber'>7.20</td>
 					<td>Row 8</td>
 				</tr>
 			</tbody>
@@ -347,129 +355,129 @@
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>jasmine rice</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>cup</td>
-					<td>8.6</td>
+					<td class='centernumber'>8.60</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>brown sugar</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tbsp</td>
-					<td>2.3</td>
+					<td class='centernumber'>2.30</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>egg</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>pcs</td>
-					<td>3.2</td>
+					<td class='centernumber'>3.20</td>
 					<td>Row 3</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>peanut oil</td>
-					<td>0.25</td>
+					<td class='centernumber'>0.25</td>
 					<td>cup</td>
-					<td>8.6</td>
+					<td class='centernumber'>8.60</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>tamarind puree</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tbsp</td>
-					<td>1.5</td>
+					<td class='centernumber'>1.50</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>shrimp paste</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>tsp</td>
-					<td>3.5</td>
+					<td class='centernumber'>3.50</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>coconut milk</td>
-					<td>400</td>
+					<td class='centernumber'>400</td>
 					<td>gram</td>
-					<td>2.1</td>
+					<td class='centernumber'>2.10</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>garlic clove</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>pcs</td>
-					<td>1.6</td>
+					<td class='centernumber'>1.60</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>red shallots</td>
-					<td>2</td>
+					<td class='centernumber'>2</td>
 					<td>pcs</td>
-					<td>1.4</td>
+					<td class='centernumber'>1.40</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>red chillies</td>
-					<td>10</td>
+					<td class='centernumber'>10</td>
 					<td>pcs</td>
-					<td>1.6</td>
+					<td class='centernumber'>1.60</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>red onion</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>pcs</td>
-					<td>1.3</td>
+					<td class='centernumber'>1.30</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>lemongrass</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>stalk</td>
-					<td>1.1</td>
+					<td class='centernumber'>1.10</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>dried anchovies</td>
-					<td>1</td>
+					<td class='centernumber'>1</td>
 					<td>cup</td>
-					<td>2.1</td>
+					<td class='centernumber'>2.10</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>cucumber</td>
-					<td>0.5</td>
+					<td class='centernumber'>0.5</td>
 					<td>pcs</td>
-					<td>1.5</td>
+					<td class='centernumber'>1.50</td>
 					<td>Row 5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>fried peanuts</td>
-					<td>100</td>
+					<td class='centernumber'>100</td>
 					<td>gram</td>
-					<td>0.7</td>
+					<td class='centernumber'>0.70</td>
 					<td>Row 6</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
 					<td>fried chicken</td>
-					<td>0.5</td>
+					<td class='centernumber'>0.5</td>
 					<td>pcs</td>
-					<td>6</td>
+					<td class='centernumber'>6.00</td>
 					<td>Row 6</td>
 				</tr>
 			</tbody>

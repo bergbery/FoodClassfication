@@ -2,8 +2,8 @@
 	display: none;
 }
 
-#wikidescription {
-	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+#wikidescription p {
+	font: 400 14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 
 header.masthead {
@@ -11,6 +11,19 @@ header.masthead {
     display: table;
     width: 100%;
 }
+
+@media (max-width: 767px) {
+	.colcenter {
+		margin-top: 0%;
+	}
+}
+@media (min-width: 768px) {
+	.colcenter {
+		margin-top: 20%;
+		margin-left: 60%;
+	}
+}
+
 table.ingredienttbl {
 	background: white;
 }
@@ -24,6 +37,9 @@ table.ingredienttbl thead td {
 table.ingredienttbl tbody td {
 	text-align: left;
 	font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+table.ingredienttbl tbody td.centernumber {
+	text-align:center;
 }
 
 
@@ -65,7 +81,12 @@ table.summarytbl tfoot td {
 	text-align: left;
 	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
-
+table.summarytbl tbody td.centernumber {
+	text-align:center;
+}
+table.summarytbl tfoot td.centernumber {
+	text-align:center;
+}
 table.summarytbl tfoot td.totalamount {
 	text-align: right;
 	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;

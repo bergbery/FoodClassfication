@@ -11305,12 +11305,18 @@ body {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 4rem 0;
   background-color: white;
 }
 
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75) !important;
+}
+.text-red-75 {
+  color: rgba(255,45,52, 0.75) !important;
+}
+.text-red-100 {
+  color: rgba(255,45,52, 1) !important;
 }
 
 .btn-xl {
@@ -11325,7 +11331,7 @@ body {
 hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
-  margin: 1.5rem auto;
+  margin: 1rem auto;
   background-color: #f4623a;
   opacity: 1;
 }
@@ -11413,6 +11419,9 @@ header.masthead h1, header.masthead .h1 {
     height: 100vh;
 	padding-top: 15rem;
   }
+  header.masthead.predict {
+	padding-top: 8rem;
+  }
 }
 @media (min-width: 992px) {
   header.masthead {
@@ -11420,6 +11429,9 @@ header.masthead h1, header.masthead .h1 {
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
+  }
+  header.masthead.predict {
+	padding-top: 8rem;
   }
   header.masthead p {
     font-size: 1.15rem;
