@@ -3,10 +3,10 @@ function onchange_submitfile(_this) {
 }
 
 function onclick_itemreceipe(_this) {
-	if ($(_this).hasClass('nasilemak') == true)) {
+	if ($(_this).hasClass('nasilemak') == true) {
 		
 	}
-	else if ($(_this).hasClass('charkwayteow') == true)) {
+	else if ($(_this).hasClass('charkwayteow') == true) {
 		
 	}
 }
