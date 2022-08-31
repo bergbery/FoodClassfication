@@ -11408,6 +11408,12 @@ header.masthead {
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
 }
+@media (max-width: 991px) {
+  header.masthead {
+    height: 100vh;
+	padding-top: 15rem;
+  }
+}
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
