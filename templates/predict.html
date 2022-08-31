@@ -32,6 +32,7 @@
 <!--<js>-->
 <script type="text/javascript">
 	var mpredictions = '{{ predictions }}';
+	var mparams = '{{ params }}';
 </script>
 <script type="text/javascript" src="{{ url_for('static',filename='js/predict.js') }}"></script>
 <!--<css>-->
@@ -60,7 +61,7 @@
 						<h2>You have</h2>
 					</div>
 					<div class="col-lg-5 col-xs-12 text-red-100" style="float:left;">
-						<h3 class="colcenter">{{ predictions.class1 }}</h3>
+						<h3 class="colcenter predictedresult"></h3>
 					</div>
 					<div class="col-lg-7 col-xs-12" style="float:left;">
 						<img id="uploadfile" src="" alt="Uploaded Image" width="256" height="auto" style="width:256px;height:auto">	
@@ -71,7 +72,7 @@
 				</div>
 				<div class="col-lg-10 align-self-baseline">
 					<div id="maintext" style="display: block;">	
-						<h3 class="text-white-75">About: {{ predictions.class1 }}</h3>
+						<h3 class="text-white-75">About: <span class="predictedresult text-white-75"></span></h3>
 						<div id="wikidescription" class="text-white-75"></div>
 						<h4 class="text-white-75">More Details</h4>
 						<p>

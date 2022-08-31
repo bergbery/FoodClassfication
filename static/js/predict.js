@@ -6,23 +6,55 @@ $(document).ready(function () {
 		"prob1":0,
 		"prob2":0,
 	}
-	if (mpredictions != '') {
+	if (mpredictions != '{}') {
 		var mpredictionsconverted = mpredictions.replace(/&#39;/ig,'"');
 		vpredictions = JSON.parse(mpredictionsconverted);
 	}
+	
+	
+	var vparams = {
+		"_foodtype": '',
+		"_buttondisplay": '',
+	}
+	if (mparams != '{}')  {
+		var mparamsconverted = mparams.replace(/&#39;/ig,'"');
+		vparams = JSON.parse(mparamsconverted);
+	}
 
 	setTimeout(function(){	
-		var vpredictresult = vpredictions.class1;
-		//var vuploadedimg = vpredictions.image64;
-		//$('#uploadedimg').attr('src, vuploadedimg);
-		//alert(vpredictresult);
-		var vfilename = vpredictions.upload_filename;
-		//$('#uploadfile').attr('src',"{{ url_for('static',filename='uploads/"+vfilename+"') }}", );
-		$('#uploadfile').attr('src',"../static/uploads/"+vfilename);
-		//## search wiki and display result
-		searchAndDisplayWiki(vpredictresult);
-		//## display more detail
-		displaymoredetail(vpredictresult)
+		if (mpredictions != '{}') {
+		//## using prediction
+			var vpredictresult = vpredictions.class1;
+			$('.predictedresult').text(vpredictresult);
+			//var vuploadedimg = vpredictions.image64;
+			//$('#uploadedimg').attr('src, vuploadedimg);
+			//alert(vpredictresult);
+			var vfilename = vpredictions.upload_filename;
+			//$('#uploadfile').attr('src',"{{ url_for('static',filename='uploads/"+vfilename+"') }}", );
+			$('#uploadfile').attr('src',"../static/uploads/"+vfilename);
+			//## search wiki and display result
+			searchAndDisplayWiki(vpredictresult);
+			//## display more detail
+			displaymoredetail(vpredictresult)
+		}
+		else {
+		//## using pass in
+			var vpredictresult = vparams._foodtype;
+			$('.predictedresult').text(vpredictresult);
+			//alert(vpredictresult);
+			if (vpredictresult.toLowerCase() == 'nasilemak') {				
+				//$('#uploadfile').attr('src',"{{ url_for('static',filename='assets/img/portfolio/fullsize/1.jpg') }}", );
+				$('#uploadfile').attr('src','../static/assets/img/portfolio/fullsize/1.jpg');
+			}
+			else if (vpredictresult.toLowerCase() == 'charkwayteow') {
+				//$('#uploadfile').attr('src',"{{ url_for('static',filename='assets/img/portfolio/fullsize/2.jpg') }}", );
+				$('#uploadfile').attr('src','../static/assets/img/portfolio/fullsize/2.jpg');
+			}
+			//## search wiki and display result
+			searchAndDisplayWiki(vpredictresult);
+			//## display more detail
+			displaymoredetail(vpredictresult)
+		}
 		
 	}, 200);
 });

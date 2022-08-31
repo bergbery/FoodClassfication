@@ -58,9 +58,23 @@ def prediction(filename):
       "prob2":probabilities[index[0]],
       "upload_filename":filename,
       #"image64": vimage64,
-     }
+    }
     #Step 5
-    return render_template('predict.html', predictions=predictions)
+    return render_template('predict.html', predictions=predictions, params={})
+
+@app.route('/displaypredict/', methods=['GET']) 
+def displaypredict():
+    _foodtype = request.args.get('_foodtype')
+    _buttondisplay = request.args.get('_buttondisplay')
+    #_foodtype='CharKwayTeow'
+    #_buttondisplay='both'
+    params = {
+      "_foodtype":_foodtype,
+      "_buttondisplay":_buttondisplay,
+    }
+    return render_template('predict.html', predictions={},params=params)
+  
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
