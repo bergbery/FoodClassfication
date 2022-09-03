@@ -1,3 +1,4 @@
+var mbuttondisplay = '';
 $(document).ready(function () { 
 	
 	var vpredictions = {
@@ -40,6 +41,7 @@ $(document).ready(function () {
 		else {
 		//## using pass in
 			var vpredictresult = vparams._foodtype;
+			mbuttondisplay = vparams._buttondisplay;
 			$('.predictedresult').text(vpredictresult);
 			//alert(vpredictresult);
 			if (vpredictresult.toLowerCase() == 'nasilemak') {				
@@ -153,14 +155,118 @@ function displayWiki(apiResult){
 //## display more detail
 function displaymoredetail(vpredictresult) {
 	
+	var vingredienthtml = '';	
+	$.ajax({
+		type: "GET",
+		//url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + _firstresult + "&callback=?&",
+		url: '/getingredient/?_foodtype='+vpredictresult+'',
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		dataType: "json",
+		success: function (data, textStatus, jqXHR) {
+			//## construct table for ingredient
+			vingredienthtml = constructIngredient(data, vpredictresult);
+		},
+		error: function (errorMessage) {
+			alert(errorMessage);
+		}
+	});
+	var vreceipehtml = '';
+	$.ajax({
+		type: "GET",
+		//url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + _firstresult + "&callback=?&",
+		url: '/getrecipe/?_foodtype='+vpredictresult+'',
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		dataType: "json",
+		success: function (data, textStatus, jqXHR) {
+			//## construct table for recipe
+			vreceipehtml = constructRecipe(data, vpredictresult);
+		},
+		error: function (errorMessage) {
+			alert(errorMessage);
+		}
+	});
+	
+	
 	//## append table to respective placeholder
-	var vingredienthtml = $("<div />").append($('.ingredienttbl.' + vpredictresult.toLowerCase()).clone()).html();
+	//var vingredienthtml = $("<div />").append($('.ingredienttbl.' + vpredictresult.toLowerCase()).clone()).html();
+	//var vingredienthtml = vtable;
 	$('#ph_ingredient').append(vingredienthtml);
-	var vreceipehtml = $("<div />").append($('.receipetbl.' + vpredictresult.toLowerCase()).clone()).html();
+	//var vreceipehtml = $("<div />").append($('.receipetbl.' + vpredictresult.toLowerCase()).clone()).html();
 	$('#ph_receipe').append(vreceipehtml);
 	
 	//## display button for user to click
 	$('.moredetailbtn').removeClass('hidectrl');
+}
+
+//## construct table for ingredient
+function constructIngredient(_data, _predictresult) {
+	var vpredictresult =_predictresult.toLowerCase();
+	//## Loop Ingredient Table	
+	var vingredienttable = `<table class="table table-bordered table-striped ingredienttbl ` + vpredictresult +`" id='ingredient_` + vpredictresult +`' style="width:100%">
+							<thead>
+								<tr>
+									<td></td>
+									<td>Ingredient</td>
+									<td>Amount</td>
+									<td>Unit</td>
+									<td>Price</td>
+									<td>Location</td>
+								</tr>
+							</thead>`;
+					
+	$.each(_data, function (dataindex, dataobj) {
+		var vingredient = dataobj.INGREDIENT;
+		var vamount = dataobj.AMOUNT;
+		var vunit = dataobj.UNIT;
+		var vprice = dataobj.PRICE;
+		var vlocation = dataobj.LOCATION;
+		//## concat row
+		vingredienttable += `<tr>
+								<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
+								<td>`+vingredient+`</td>
+								<td class='centernumber'>`+parseFloat(vamount)+`</td>								
+								<td>`+vunit+`</td>
+								<td class='centernumber'>`+parseFloat(vprice).toFixed(2)+`</td>
+								<td>`+vlocation+`</td>
+							</tr>`;
+			
+	});	
+	//## concat total Amount row
+	vingredienttable += `</tbody>
+				</table>`;
+	
+	return vingredienttable;					
+}
+
+//## construct table for recipe
+function constructRecipe(_data, _predictresult) {
+	var vpredictresult =_predictresult.toLowerCase();
+	//## Loop Ingredient Table	
+	var vrecipetable = `<table class="table table-bordered table-striped receipetbl ` + vpredictresult +`" id='receipe_` + vpredictresult +`' style="width:100%">
+							<thead>
+								<tr>
+									<td>Step</td>
+									<td>Description</td>
+								</tr>
+							</thead>`;
+					
+	$.each(_data, function (dataindex, dataobj) {
+		var vstep = dataobj.STEP;
+		var vdescription = dataobj.DESCRIPTION;
+		//## concat row
+		vrecipetable += `<tr>
+								<td>`+vstep+`</td>
+								<td>`+vdescription+`</td>
+							</tr>`;
+			
+	});	
+	//## concat total Amount row
+	vrecipetable += `</tbody>
+				</table>`;
+	
+	return vrecipetable;					
 }
 
 function onclick_Ingredient(_this) {
@@ -171,18 +277,31 @@ function onclick_Ingredient(_this) {
 				vrowcount = vrowcount + 1;
 			}
 		});
-		if (vrowcount > 0) {
-			//## hide Receipe Button
-			$('button.receipe').addClass('hidectrl');
-			//## show Ingredient Button
-			$('button.ingredient').removeClass('hidectrl');	
-		}
+		if (mbuttondisplay == '' || mbuttondisplay == 'both') {
+			if (vrowcount > 0) {
+				//## hide Receipe Button
+				$('button.receipe').addClass('hidectrl');
+				//## show Ingredient Button
+				$('button.ingredient').removeClass('hidectrl');	
+			}
+			else {
+				//## hide Receipe Button
+				$('button.receipe').addClass('hidectrl');
+				//## hide Ingredient Button
+				$('button.ingredient').addClass('hidectrl');	
+			}
+		} 
 		else {
-			//## hide Receipe Button
-			$('button.receipe').addClass('hidectrl');
-			//## hide Ingredient Button
-			$('button.ingredient').addClass('hidectrl');	
+			if (vrowcount > 0) {
+				//## show respective Button
+				$('button.' + mbuttondisplay).removeClass('hidectrl');
+			}
+			else {
+				//## hide respective Button
+				$('button.' + mbuttondisplay).addClass('hidectrl');
+			}
 		}
+	
 	}, 500);
 }
 
@@ -194,17 +313,33 @@ function onclick_Receipe(_this) {
 				vrowcount = vrowcount + 1;
 			}
 		});
-		if (vrowcount > 0) {
-			//## hide Ingredient Button
-			$('button.ingredient').addClass('hidectrl');
-			//## show Receipe Button
-			$('button.receipe').removeClass('hidectrl');
+		if (mbuttondisplay == '' || mbuttondisplay == 'both') {
+			if (vrowcount > 0) {
+				//## hide Ingredient Button
+				$('button.ingredient').addClass('hidectrl');
+				//## show Receipe Button
+				$('button.receipe').removeClass('hidectrl');
+			}
+			else {
+				//## hide Ingredient Button
+				$('button.ingredient').addClass('hidectrl');
+				//## hide Receipe Button
+				$('button.receipe').addClass('hidectrl');	
+			}
+		} 
+		else if (mbuttondisplay == 'online') {			
+			//## hide only export Button
+			$('button.' + mbuttondisplay).addClass('hidectrl');
 		}
 		else {
-			//## hide Ingredient Button
-			$('button.ingredient').addClass('hidectrl');
-			//## hide Receipe Button
-			$('button.receipe').addClass('hidectrl');	
+			if (vrowcount > 0) {
+				//## show only export Button
+				$('button.' + mbuttondisplay).removeClass('hidectrl');
+			}
+			else {
+				//## hide only export Button
+				$('button.' + mbuttondisplay).addClass('hidectrl');
+			}
 		}
 	}, 500);
 }

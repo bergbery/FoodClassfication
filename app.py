@@ -10,7 +10,9 @@ from skimage.transform import resize
 import matplotlib.pyplot as plt 
 import tensorflow as tf 
 import numpy as np
-#import ibm_db
+import ibm_db
+import ibm_db_dbi
+import pandas as pd
 #import base64
 
 print("Loading model") 
@@ -77,7 +79,7 @@ def displaypredict():
  
 @app.route('/getingredient/', methods=['GET']) 
 def getingredient():
-    #_foodtype = request.args.get('_foodtype')
+    _foodtype = request.args.get('_foodtype')
     ###conn_str='database=pydev;hostname=host.test.com;port=portno;protocol=tcpip;uid=db2inst1;pwd=secret'
     #conn_str='database=bludb;hostname=98538591-7217-4024-b027-8baa776ffad1.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;port=30875;protocol=TCPIP;uid=vjd81886;pwd=OicRrtEgVpnkIaxU'
       
@@ -101,23 +103,69 @@ def getingredient():
     "UID={5};"
     "PWD={6};"
     "SECURITY={7};").format(dsn_driver, dsn_database, dsn_hostname, dsn_port, dsn_protocol, dsn_uid, dsn_pwd, dsn_security)
-        
+    
+    resultJSON = ''
     try:
         conn = ibm_db.connect(dsn, "", "")
+        hdbi = ibm_db_dbi.Connection(conn)
 
-        query_str = f"SELECT * FROM TQP71934.INGREDIENT WHERE foodtype = 'nasilemak'"
-        selectQuery = query_str
-            
-        #Execute the statement
-        selectStmt = ibm_db.exec_immediate(conn, selectQuery)
-
-        #Fetch the Dictionary (for the first row only) - replace ... with your code
-        output = ibm_db.fetch_tuple(selectStmt)
+        query_str = f"SELECT * FROM TQP71934.INGREDIENT WHERE foodtype = '"+_foodtype.lower()+"'"
+        df=pd.read_sql(query_str, hdbi)
+        
+        df.head()
+        resultJSON = df.to_json(orient="records")
+        
+        print(resultJSON)
         
     except:
         print ("no connection:", ibm_db.conn_errormsg())
     
-    return jsonify(output)
+    return resultJSON
+    
+@app.route('/getrecipe/', methods=['GET']) 
+def getrecipe():
+    _foodtype = request.args.get('_foodtype')
+    ###conn_str='database=pydev;hostname=host.test.com;port=portno;protocol=tcpip;uid=db2inst1;pwd=secret'
+    #conn_str='database=bludb;hostname=98538591-7217-4024-b027-8baa776ffad1.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;port=30875;protocol=TCPIP;uid=vjd81886;pwd=OicRrtEgVpnkIaxU'
+      
+    ############################
+    dsn_hostname = "9938aec0-8105-433e-8bf9-0fbb7e483086.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud"# e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
+    dsn_uid = "tqp71934"# e.g. "abc12345"
+    dsn_pwd = "mOHtF1Hxhhz7K74t"# e.g. "7dBZ3wWt9XN6$o0J"
+        
+    dsn_driver = "{IBM DB2 ODBC DRIVER}"
+    dsn_database = "bludb"            # e.g. "BLUDB"
+    dsn_port = "32459"                # e.g. "50000" 
+    dsn_protocol = "TCPIP"            # i.e. "TCPIP"
+    dsn_security = "SSL"
+        
+    dsn = (
+    "DRIVER={0};"
+    "DATABASE={1};"
+    "HOSTNAME={2};"
+    "PORT={3};"
+    "PROTOCOL={4};"
+    "UID={5};"
+    "PWD={6};"
+    "SECURITY={7};").format(dsn_driver, dsn_database, dsn_hostname, dsn_port, dsn_protocol, dsn_uid, dsn_pwd, dsn_security)
+    
+    resultJSON = ''
+    try:
+        conn = ibm_db.connect(dsn, "", "")
+        hdbi = ibm_db_dbi.Connection(conn)
+
+        query_str = f"SELECT * FROM TQP71934.RECIPE WHERE foodtype = '"+_foodtype.lower()+"'"
+        df=pd.read_sql(query_str, hdbi)
+        
+        df.head()
+        resultJSON = df.to_json(orient="records")
+        
+        print(resultJSON)
+        
+    except:
+        print ("no connection:", ibm_db.conn_errormsg())
+    
+    return resultJSON
 
 
 if __name__ == "__main__":
