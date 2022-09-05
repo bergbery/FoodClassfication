@@ -1,4 +1,5 @@
 ibm_db
+pandas
 numpy
 Flask
 matplotlib
