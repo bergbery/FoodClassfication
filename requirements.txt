@@ -1,6 +1,5 @@
-ibm_db_dbi
+json
 ibm_db
-pandas
 numpy
 Flask
 matplotlib

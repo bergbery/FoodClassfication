@@ -10,9 +10,10 @@ from skimage.transform import resize
 import matplotlib.pyplot as plt 
 import tensorflow as tf 
 import numpy as np
-#import ibm_db
-import ibm_db_dbi
-import pandas as pd
+import ibm_db
+import json
+#import ibm_db_dbi
+#import pandas as pd
 #import base64
 
 print("Loading model") 
@@ -107,14 +108,26 @@ def getingredient():
     resultJSON = ''
     try:
         conn = ibm_db.connect(dsn, "", "")
-        hdbi = ibm_db_dbi.Connection(conn)
+        #hdbi = ibm_db_dbi.Connection(conn)
 
-        query_str = f"SELECT * FROM TQP71934.INGREDIENT WHERE foodtype = '"+_foodtype.lower()+"'"
-        df=pd.read_sql(query_str, hdbi)
+        selectQuery = f"SELECT * FROM TQP71934.INGREDIENT WHERE foodtype = '"+_foodtype.lower()+"'"
+        #sql = ibm_db.exec_immediate(conn, "SELECT * FROM TQP71934.INGREDIENT WHERE foodtype = '"+_foodtype.lower()+"'")
+        #df=pd.read_sql(selectQuery, hdbi)
         
-        df.head()
-        resultJSON = df.to_json(orient="records")
+        #df.head()
+        #resultJSON = df.to_json(orient="records")
         
+        #Execute the statement
+        selectStmt = ibm_db.exec_immediate(conn, selectQuery)
+        
+        listObj = []
+        output = ibm_db.fetch_both(selectStmt)
+        while output != False:
+            listObj.append(output)
+            output = ibm_db.fetch_both(selectStmt)
+        
+        #resultJSON = json.loads(listObj)
+        resultJSON = json.dumps(listObj, separators=(',', ':'))
         print(resultJSON)
         
     except:
@@ -152,14 +165,26 @@ def getrecipe():
     resultJSON = ''
     try:
         conn = ibm_db.connect(dsn, "", "")
-        hdbi = ibm_db_dbi.Connection(conn)
+        #hdbi = ibm_db_dbi.Connection(conn)
 
-        query_str = f"SELECT * FROM TQP71934.RECIPE WHERE foodtype = '"+_foodtype.lower()+"'"
-        df=pd.read_sql(query_str, hdbi)
+        selectQuery = f"SELECT * FROM TQP71934.RECIPE WHERE foodtype = '"+_foodtype.lower()+"'"
+        # sql = ibm_db.exec_immediate(conn, "SELECT * FROM TQP71934.RECIPE WHERE foodtype = '"+_foodtype.lower()+"'")
+        #df=pd.read_sql(selectQuery, hdbi)
         
-        df.head()
-        resultJSON = df.to_json(orient="records")
+        #df.head()
+        #resultJSON = df.to_json(orient="records")
         
+        #Execute the statement
+        selectStmt = ibm_db.exec_immediate(conn, selectQuery)
+        
+        listObj = []
+        output = ibm_db.fetch_both(selectStmt)
+        while output != False:
+            listObj.append(output)
+            output = ibm_db.fetch_both(selectStmt)
+        
+        #resultJSON = json.loads(listObj)
+        resultJSON = json.dumps(listObj, separators=(',', ':'))
         print(resultJSON)
         
     except:
