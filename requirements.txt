@@ -1,3 +1,5 @@
+ibm_db
+ibm_db_dbi
 numpy
 Flask
 matplotlib
