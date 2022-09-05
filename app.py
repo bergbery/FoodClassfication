@@ -10,9 +10,9 @@ from skimage.transform import resize
 import matplotlib.pyplot as plt 
 import tensorflow as tf 
 import numpy as np
-#import ibm_db
-#import ibm_db_dbi
-#import pandas as pd
+import ibm_db
+import ibm_db_dbi
+import pandas as pd
 #import base64
 
 print("Loading model") 
