@@ -11431,7 +11431,7 @@ header.masthead h1, header.masthead .h1 {
     padding-bottom: 0;
   }
   header.masthead.predict {
-	padding-top: 8rem;
+	padding-top: 0rem;
   }
   header.masthead p {
     font-size: 1.15rem;

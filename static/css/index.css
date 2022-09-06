@@ -103,6 +103,11 @@
     border: 0.5rem solid rgba(0, 0, 0, 0.1);
 	background: white;
 }
+
+.team-member h4 {
+	margin-top: 10px;
+}
+
 .rounded-circle {
     border-radius: 50% !important;
 }
