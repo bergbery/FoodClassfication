@@ -203,40 +203,77 @@ function displaymoredetail(vpredictresult) {
 //## construct table for ingredient
 function constructIngredient(_data, _predictresult) {
 	var vpredictresult =_predictresult.toLowerCase();
-	//## Loop Ingredient Table	
-	var vingredienttable = `<table class="table table-bordered table-striped ingredienttbl ` + vpredictresult +`" id='ingredient_` + vpredictresult +`' style="width:100%">
-							<thead>
-								<tr>
-									<td></td>
-									<td>Ingredient</td>
-									<td>Amount</td>
-									<td>Unit</td>
-									<td>Price</td>
-									<td>Location</td>
-								</tr>
-							</thead>`;
-					
-	$.each(_data, function (dataindex, dataobj) {
-		var vingredient = dataobj.INGREDIENT;
-		var vamount = dataobj.AMOUNT;
-		var vunit = dataobj.UNIT;
-		var vprice = dataobj.PRICE;
-		var vlocation = dataobj.LOCATION;
-		//## concat row
-		vingredienttable += `<tr>
-								<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
-								<td>`+vingredient+`</td>
-								<td class='centernumber'>`+parseFloat(vamount)+`</td>								
-								<td>`+vunit+`</td>
-								<td class='centernumber'>`+parseFloat(vprice).toFixed(2)+`</td>
-								<td>`+vlocation+`</td>
-							</tr>`;
-			
-	});	
-	//## concat total Amount row
-	vingredienttable += `</tbody>
-				</table>`;
-	
+	var vingredienttable = '';
+	//## mobile screen
+    if (window.matchMedia("(max-device-width: 767px)").matches) {
+		//## Loop Ingredient Table	
+		vingredienttable = `<table class="table table-bordered table-striped ingredienttbl ` + vpredictresult +`" id='ingredient_` + vpredictresult +`' style="width:100%">
+								<thead>
+									<tr>
+										<td>
+											Details
+										</td>
+									</tr>
+								</thead>`;
+		
+		$.each(_data, function (dataindex, dataobj) {
+			var vingredient = dataobj.INGREDIENT;
+			var vamount = dataobj.AMOUNT;
+			var vunit = dataobj.UNIT;
+			var vprice = dataobj.PRICE;
+			var vlocation = dataobj.LOCATION;
+			//## concat row
+			vingredienttable += `<tr>
+									<td>
+										<div><input type="checkbox" class="checkbox" value="1" name="selectingred" /></div>
+										<div>Ingredient: <span class='ingredient'>`+vingredient+`</span></div>
+										<div>Amount: <span class='amount'>`+parseFloat(vamount)+`</span></div>
+										<div>Unit: <span class='unit'>`+vunit+`</span></div>
+										<div>Price: <span class='price'>`+parseFloat(vprice).toFixed(2)+`</span></div>
+										<div>Location: <span class='location'>`+vlocation+`</span></div>
+									</td>
+								</tr>`;
+				
+		});	
+		//## concat end row
+		vingredienttable += `</tbody>
+					</table>`;
+	}
+	else {	
+		//## Loop Ingredient Table	
+		vingredienttable = `<table class="table table-bordered table-striped ingredienttbl ` + vpredictresult +`" id='ingredient_` + vpredictresult +`' style="width:100%">
+								<thead>
+									<tr>
+										<td></td>
+										<td>Ingredient</td>
+										<td>Amount</td>
+										<td>Unit</td>
+										<td>Price</td>
+										<td>Location</td>
+									</tr>
+								</thead>`;
+						
+		$.each(_data, function (dataindex, dataobj) {
+			var vingredient = dataobj.INGREDIENT;
+			var vamount = dataobj.AMOUNT;
+			var vunit = dataobj.UNIT;
+			var vprice = dataobj.PRICE;
+			var vlocation = dataobj.LOCATION;
+			//## concat row
+			vingredienttable += `<tr>
+									<td><input type="checkbox" class="checkbox" value="1" name="selectingred" /></td>
+									<td class='ingredient'>`+vingredient+`</td>
+									<td class='centernumber amount'>`+parseFloat(vamount)+`</td>								
+									<td class='unit'>`+vunit+`</td>
+									<td class='centernumber price'>`+parseFloat(vprice).toFixed(2)+`</td>
+									<td class='location'>`+vlocation+`</td>
+								</tr>`;
+				
+		});	
+		//## concat end row
+		vingredienttable += `</tbody>
+					</table>`;
+	}
 	return vingredienttable;					
 }
 
@@ -429,8 +466,10 @@ function constructCheckedIngredient() {
 	$('#ph_ingredient .ingredienttbl').find('tbody tr').each(function (trindex, trrow) {
 		var vischecked = $(trrow).find('.checkbox').is(':checked');
 		if (vischecked == true) {
-			var vIngredient = $(trrow).find("td:eq(1)").text();
-			var vPrice = $(trrow).find("td:eq(4)").text();
+			//var vIngredient = $(trrow).find("td:eq(1)").text();
+			//var vPrice = $(trrow).find("td:eq(4)").text();
+			var vIngredient = $(trrow).find(".ingredient").text();
+			var vPrice = $(trrow).find(".price").text();
 			vtotalPrice += parseFloat(vPrice);
 			//## concat row
 			vsummarytable += `<tr>
