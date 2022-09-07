@@ -50,18 +50,35 @@ function onclick_itemreceipe(_this) {
 function onclick_submitfeedback(_this) {
 	event.preventDefault();
 	
-	Swal.fire({
-		title:"Feedback had been submitted!", 
-		html: "Thank you",
-		icon: 'success',
-		showDenyButton: false,
-		showCancelButton: false,
-		confirmButtonText: 'OK',
-		denyButtonText: ''
-	}).then((result) => {
-		$('#name').val('');
-		$('#email').val('');
-		$('#phone').val('');
-		$('#message').val('');
-	})
+	var vname = $('#name').val();
+	var vemail = $('#email').val();
+	var vmessage = $('#message').val();
+	
+	if (vname == '' || vemail == '' || vmessage == '') {
+		Swal.fire({
+					title:"Please fill up the required field!", 
+					html: "",
+					icon: 'error',
+					showDenyButton: false,
+					showCancelButton: false,
+					confirmButtonText: 'Close',
+					denyButtonText: ''
+				});		
+	}
+	else {	
+		Swal.fire({
+			title:"Feedback had been submitted!", 
+			html: "Thank you",
+			icon: 'success',
+			showDenyButton: false,
+			showCancelButton: false,
+			confirmButtonText: 'OK',
+			denyButtonText: ''
+		}).then((result) => {
+			$('#name').val('');
+			$('#email').val('');
+			$('#phone').val('');
+			$('#message').val('');
+		})
+	}
 }
