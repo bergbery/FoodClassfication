@@ -34,7 +34,8 @@ $(document).ready(function () {
 			//$('#uploadfile').attr('src',"{{ url_for('static',filename='uploads/"+vfilename+"') }}", );
 			$('#uploadfile').attr('src',"../static/uploads/"+vfilename);
 			//## search wiki and display result
-			searchAndDisplayWiki(vpredictresult);
+			//searchAndDisplayWiki(vpredictresult);		
+			searchAndDisplayWikiV2(vpredictresult);
 			//## display more detail
 			displaymoredetail(vpredictresult)
 		}
@@ -53,7 +54,8 @@ $(document).ready(function () {
 				$('#uploadfile').attr('src','../static/assets/img/portfolio/fullsize/2.jpg');
 			}
 			//## search wiki and display result
-			searchAndDisplayWiki(vpredictresult);
+			//searchAndDisplayWiki(vpredictresult);
+			searchAndDisplayWikiV2(vpredictresult);
 			//## display more detail
 			displaymoredetail(vpredictresult)
 		}
@@ -62,12 +64,12 @@ $(document).ready(function () {
 });
 
 //## search wiki and display result
-function searchAndDisplayWiki(_vpredictresult) {
+function searchAndDisplayWiki(_predictresult) {
 	var vdata = '';
 	//## get wiki list with predicted result
 	$.ajax({
 		type: "GET",
-		url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + _vpredictresult + "&callback=?",
+		//url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + _predictresult + "&callback=?",
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		dataType: "json",
@@ -76,12 +78,47 @@ function searchAndDisplayWiki(_vpredictresult) {
 				if (i == 1) {
 					//## display wiki result - 1st item
 					var vfirstresult = item[0];
+					if (vfirstresult == null || vfirstresult == '') {
+						vfirstresult = _predictresult;
+					}
 					//## search wiki Content with first result
 					searchWikiContent(vfirstresult);
 				}
 			});
 					
 			
+		},
+		error: function (xhr, textStatus, errorThrown) {
+			vdata = textStatus;
+		}
+	});
+	return vdata;
+}
+
+//## search wiki and display result
+function searchAndDisplayWikiV2(_predictresult) {
+	var vdata = '';
+	//## get wiki list with predicted result
+	$.ajax({
+		type: "GET",
+		url: "https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${" + _predictresult + "}",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		dataType: "json",
+		success: function (data, textStatus, xhr) {
+			
+			var vsearch = data.query.search;
+			
+			$.each(vsearch, function (i, item) {
+				if (i == 0) {
+					var vfirstresult = item.title;
+					if (vfirstresult == null || vfirstresult == '') {
+						vfirstresult = _predictresult;
+					}
+					//## search wiki Content with first result
+					searchWikiContent(vfirstresult);
+				}
+			});
 		},
 		error: function (xhr, textStatus, errorThrown) {
 			vdata = textStatus;
@@ -105,6 +142,60 @@ function searchWikiContent(_firstresult) {
 			
 			$.each(vpages, function (ind, obj) {
 				var veachpageextract = obj.extract;
+				$('#wikidescription').html(veachpageextract)
+			});
+			/*
+			for (var veachpage in vpages) {
+				var veachpageinfo = veachpage;
+			}
+			//var vpage = eval('data.query.pages.' + vpageid + '.extract');
+			//var markup = data.parse.text["*"];
+			console.log(markup);
+			var num_revisions = data.query.pages[pageId].revisions.length;
+			var blurb = $('<div></div>').html(markup);
+
+			// remove links as they will not work
+			blurb.find('a').each(function () { 
+				$(this).replaceWith($(this).html()); 
+			});
+			
+			//## remove further link
+			//blurb.find('.infobox-title.fn').remove();
+			blurb.find('.infobox-below').closest('tr').remove();
+			blurb.find('.thumb.tright').remove();
+			//blurb.find('.mw-references-wrap.mw-references-columns').remove();
+			blurb.find('table.infobox').not('.hrecipe').remove();
+			blurb.find('.mw-references-wrap').remove();
+			
+			// remove any references
+			//@blurb.find('sup').remove();
+
+			// remove cite error
+			//@blurb.find('.mw-ext-cite-error').remove();
+			$('#wikidescription').html($(blurb).find('p'));
+			$('#wikidescription').html(blurb);
+			*/
+		},
+		error: function (errorMessage) {
+			alert(errorMessage);
+		}
+	});
+}
+
+//## search wiki Content
+function searchWikiContentV2(_predictresult) {
+	$.ajax({
+		type: "GET",
+		url: "https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${" + _predictresult + "}",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		dataType: "json",
+		success: function (data, textStatus, jqXHR) {
+
+			var vsearch = data.query.search;
+			
+			$.each(vsearch, function (ind, obj) {
+				var veachpageextract = obj.snippet;
 				$('#wikidescription').html(veachpageextract)
 			});
 			/*
@@ -447,6 +538,18 @@ function onclick_export(_this) {
 				//Swal.fire('Changes are not saved', '', 'info')
 			}
 		})	
+}
+
+function onclick_appendnasilemak(_this) {
+	$('#wikidescription').empty()
+	var vwikidesc= $('.wikidescription.nasilemak').html();
+	$('#wikidescription').append(vwikidesc);
+}
+
+function onclick_appendcharkwayteow(_this) {
+	$('#wikidescription').empty()
+	var vwikidesc= $('.wikidescription.charkwayteow').html();
+	$('#wikidescription').append(vwikidesc);
 }
 
 //## construct table  for checked ingredient

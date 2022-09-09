@@ -91,3 +91,9 @@ table.summarytbl tfoot td.totalamount {
 	text-align: right;
 	font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
+
+.hiddenbutton {
+	position: fixed;
+    bottom: 50px;
+    right: 0;
+}
