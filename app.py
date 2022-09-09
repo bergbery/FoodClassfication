@@ -191,6 +191,79 @@ def getrecipe():
         print ("no connection:", ibm_db.conn_errormsg())
     
     return resultJSON
+    
+@app.route('/insertfeedback/', methods=['POST']) 
+def insertfeedback():
+    if request.method == "POST":
+        #vdata=request.json['vuserfeedback']
+        vdata=request.get_data();
+        vjsondata = json.loads(vdata)
+    
+        print(vjsondata["name"]);
+        
+        vname = vjsondata["name"];
+        vemail = vjsondata["email"];
+        vcontact = vjsondata["contact"];
+        vremark = vjsondata["remark"];
+    
+        ############################
+        dsn_hostname = "9938aec0-8105-433e-8bf9-0fbb7e483086.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud"# e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
+        dsn_uid = "tqp71934"# e.g. "abc12345"
+        dsn_pwd = "mOHtF1Hxhhz7K74t"# e.g. "7dBZ3wWt9XN6$o0J"
+            
+        dsn_driver = "{IBM DB2 ODBC DRIVER}"
+        dsn_database = "bludb"            # e.g. "BLUDB"
+        dsn_port = "32459"                # e.g. "50000" 
+        dsn_protocol = "TCPIP"            # i.e. "TCPIP"
+        dsn_security = "SSL"
+            
+        dsn = (
+        "DRIVER={0};"
+        "DATABASE={1};"
+        "HOSTNAME={2};"
+        "PORT={3};"
+        "PROTOCOL={4};"
+        "UID={5};"
+        "PWD={6};"
+        "SECURITY={7};").format(dsn_driver, dsn_database, dsn_hostname, dsn_port, dsn_protocol, dsn_uid, dsn_pwd, dsn_security)
+        
+        resultJSON = ''
+        try:
+            conn = ibm_db.connect(dsn, "", "")
+            #hdbi = ibm_db_dbi.Connection(conn)
+
+            #sql = "INSERT INTO TQP71934.FEEDBACK (NAME,EMAIL,CONTACT,REMARK) VALUES ('"+vname+"','"+vemail+"','"+vcontact+"','"+vremark+"',)"
+            sql = "INSERT INTO TQP71934.FEEDBACK (NAME,EMAIL,CONTACT,REMARK) VALUES (?,?,?,?)"
+            stmt = ibm_db.prepare(conn, sql)
+            
+            ibm_db.bind_param(stmt, 1, vname)
+            ibm_db.bind_param(stmt, 2, vemail)
+            ibm_db.bind_param(stmt, 3, vcontact)
+            ibm_db.bind_param(stmt, 4, vremark)
+            
+            #Execute the statement
+            #prepStmt = ibm_db.prepare(conn, insertQuery)
+            ibm_db.execute(stmt)
+            
+            result_dict = ibm_db.fetch_assoc(stmt)
+            while result_dict is not False:
+                print(result_dict)
+                result_dict = ibm_db.fetch_assoc(stmt)
+                
+            #listObj = []
+            #output = ibm_db.fetch_both(stmt)
+            #while output != False:
+            #    listObj.append(output)
+            #    output = ibm_db.fetch_both(stmt)  
+
+            #resultJSON = json.loads(listObj)
+            #resultJSON = json.dumps(listObj, separators=(',', ':'))
+            #print(resultJSON)
+                
+        except:
+            print ("no connection:", ibm_db.conn_errormsg())
+    
+    return resultJSON
 
 
 if __name__ == "__main__":
